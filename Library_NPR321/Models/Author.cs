@@ -14,6 +14,6 @@ namespace Library_NPR321.Models
         public required string LastName { get; set; }
         public DateTime Birthday { get; set; }
 
-        public virtual IEnumerable<Book> Books { get; set; } = Enumerable.Empty<Book>();
+        public virtual IEnumerable<Book> Books { get; set; } = new List<Book>();
     }
 }
