@@ -2,7 +2,7 @@
 {
     public class HomeVM
     {
-        public IEnumerable<Book> Books { get; set; } = new List<Book>();
+        public IEnumerable<FavoriteBookVM> Books { get; set; } = new List<FavoriteBookVM>();
         public IEnumerable<Author> Authors { get; set; } = new List<Author>();
     }
 }

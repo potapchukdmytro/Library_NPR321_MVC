@@ -1,8 +1,11 @@
 ﻿@model Library_NPR321.Models.ViewModels.BookVM
 
-<h1>Додавання книги</h1>
+<h1>Редагування книги</h1>
 
-<form method="post" asp-controller="Book" asp-action="Create" enctype="multipart/form-data">
+<form method="post" asp-controller="Book" asp-action="Update" enctype="multipart/form-data">
+    @Html.HiddenFor(m => m.Book.Id)
+    @Html.HiddenFor(m => m.Book.Image)
+
     <div class="form-group" style="width: 40%">
         <label asp-for="Book.Title" class="m-1">Назва</label>
         <input asp-for="Book.Title" class="form-control m-1" placeholder="Назва">
@@ -41,6 +44,6 @@
         <label asp-for="Book.Image" class="m-1">Обкладинка</label>
         <input type="file" class="form-control m-1" name="image">
     </div>
-    <button type="submit" class="btn btn-primary m-2">Додати</button>
+    <button type="submit" class="btn btn-primary m-2">Зберегти</button>
     <a asp-controller="Book" asp-action="Index" class="btn btn-secondary m-2">Назад</a>
 </form>
