@@ -59,7 +59,7 @@ namespace Library_NPR321.Controllers
                 var imageFile = files[0];
                 var types = imageFile.ContentType.Split("/");
 
-                if (types[0] == "image")
+                if (types[0] == "image" && types.Length > 1)
                 {
                     var ext = types[1];
                     imageName = Guid.NewGuid().ToString() + "." + ext;

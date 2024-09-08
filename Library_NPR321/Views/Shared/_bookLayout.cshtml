@@ -1,0 +1,19 @@
+﻿@model Book
+
+<div class="card col-3 mx-1 mt-1 filter author-@Model.Author.Id" style="width: 300px;">
+    <div>
+        <img style="height: 400px;" src="~/@Settings.BookImagePath@(string.IsNullOrEmpty(Model.Image) ? "default.png" : Model.Image)" class="card-img-top" alt="@Model.Title">
+        <div class="card-body">
+            <h5 class="card-title">@Model.Title</h5>
+            <p class="card-text">@Model.Author.FirstName @Model.Author.LastName</p>
+        </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Жанр - @Model.Genre</li>
+            <li class="list-group-item">Ст. - @Model.PageCount</li>
+            <li class="list-group-item">Мова - @Model.Language</li>
+        </ul>
+        <div class="card-body">
+            <a asp-action="BookDetails" asp-controller="Home" asp-route-Id="@Model.Id" class="card-link btn btn-primary">Детальніше</a>
+        </div>
+    </div>
+</div>
