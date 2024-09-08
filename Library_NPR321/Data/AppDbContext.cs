@@ -1,9 +1,10 @@
 ﻿using Library_NPR321.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace Library_NPR321.Data
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<User>
     {
         public AppDbContext(DbContextOptions options)
             : base(options) { }
@@ -79,7 +80,7 @@ namespace Library_NPR321.Data
                     PageCount = 704,
                     Publisher = "КСД",
                     Year = 1954,
-                    Image = "c4a53845-cb61-4168-8514-a28e15e27847.jpeg"
+                    Image = "73e98618-2b2b-4bc4-95f6-8ea99bf9f420.webp"
                 },
                 new Book
                 {

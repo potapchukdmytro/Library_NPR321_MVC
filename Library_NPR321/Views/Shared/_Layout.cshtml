@@ -26,12 +26,15 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Головна</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Author" asp-action="Index">Автори</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Book" asp-action="Index">Книги</a>
-                        </li>
+                        @if(User.IsInRole(Settings.AdminRole))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Author" asp-action="Index">Автори</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-controller="Book" asp-action="Index">Книги</a>
+                            </li>
+                        }
                         <li class="nav-item">
                             @if(HttpContextAccessor.HttpContext.Session.Get<List<FavoriteBookItem>>(Settings.FavoriteSessionKey) != null)
                             {
@@ -45,6 +48,9 @@
                             {
                                 <a class="nav-link" asp-area="" asp-controller="Book" asp-action="Index"><i class="fa-sharp fa-regular fa-star"></i>(0)</a>
                             }
+                        </li>
+                        <li>
+                            <partial name="_LoginPartial" />
                         </li>
                     </ul>
                 </div>
