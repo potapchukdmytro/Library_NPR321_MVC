@@ -38,7 +38,7 @@
                         <li class="nav-item">
                             @if(HttpContextAccessor.HttpContext.Session.Get<List<FavoriteBookItem>>(Settings.FavoriteSessionKey) != null)
                             {
-                                <a class="nav-link" asp-area="" asp-controller="Book" asp-action="Index"><i class="fa-sharp fa-regular fa-star"></i>
+                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="FavoritePage"><i class="fa-sharp fa-regular fa-star"></i>
                                     @{
                                         var count = HttpContextAccessor.HttpContext.Session.Get<List<FavoriteBookItem>>(Settings.FavoriteSessionKey).Count;
                                     }
@@ -46,7 +46,7 @@
                             }
                             else
                             {
-                                <a class="nav-link" asp-area="" asp-controller="Book" asp-action="Index"><i class="fa-sharp fa-regular fa-star"></i>(0)</a>
+                                <a class="nav-link" asp-area="" asp-controller="Home" asp-action="FavoritePage"><i class="fa-sharp fa-regular fa-star"></i>(0)</a>
                             }
                         </li>
                         <li>

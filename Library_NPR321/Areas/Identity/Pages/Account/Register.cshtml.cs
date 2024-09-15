@@ -98,6 +98,11 @@ namespace Library_NPR321.Areas.Identity.Pages.Account
             [Display(Name = "Confirm password")]
             [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
             public string ConfirmPassword { get; set; }
+
+            [Display(Name = "First name")]
+            public string FirstName { get; set; }
+            [Display(Name = "Last name")]
+            public string LastName { get; set; }
         }
 
 
@@ -117,11 +122,16 @@ namespace Library_NPR321.Areas.Identity.Pages.Account
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
+
+                user.FirstName = Input.FirstName;
+                user.LastName = Input.LastName;
+
                 var result = await _userManager.CreateAsync(user, Input.Password);
-                await _userManager.AddToRoleAsync(user, Settings.UserRole);
 
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, Settings.UserRole);
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var userId = await _userManager.GetUserIdAsync(user);

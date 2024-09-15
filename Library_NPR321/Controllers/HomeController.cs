@@ -53,10 +53,28 @@ namespace Library_NPR321.Controllers
             return RedirectToAction("Index");
         }
 
+        public IActionResult FavoritePage()
+        {
+            var items = GetFavoriteBookItems();
+            var books = _bookRepository.Books
+                .Where(b => items.Any(i => i.BookId == b.Id));
+
+            return View(books);
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        }
+
+        public IActionResult RemoveFromFavorite(int id)
+        {
+            var items = GetFavoriteBookItems();
+            var newItems = items.Where(i => i.BookId != id);
+            HttpContext.Session.Set(Settings.FavoriteSessionKey, newItems);
+
+            return RedirectToAction("FavoritePage");
         }
 
         private List<FavoriteBookItem> GetFavoriteBookItems()

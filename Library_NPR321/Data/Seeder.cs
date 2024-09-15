@@ -11,7 +11,7 @@ namespace Library_NPR321.Data
             {
                 var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
                 var userManager = scope.ServiceProvider.GetRequiredService<UserManager<User>>();
-
+               
                 if(!roleManager.Roles.Any())
                 {
                     var adminRole = new IdentityRole
@@ -31,21 +31,25 @@ namespace Library_NPR321.Data
 
                     var admin = new User
                     {
+                        Id = Guid.NewGuid().ToString(),
                         Email = "admin@gmail.com",
                         UserName = "admin",
-                        EmailConfirmed = true
+                        EmailConfirmed = true,
+                        LockoutEnabled = false
                     };
 
                     await userManager.CreateAsync(admin, "qwe123");
 
                     var user = new User
                     {
+                        Id = Guid.NewGuid().ToString(),
                         Email = "user@gmail.com",
                         UserName = "user",
-                        EmailConfirmed = true
+                        EmailConfirmed = true,
+                        LockoutEnabled = false
                     };
 
-                    await userManager.CreateAsync(user, "qwe123");
+                    await userManager.CreateAsync(user, "qwerty123");
 
                     await userManager.AddToRoleAsync(admin, Settings.AdminRole);
                     await userManager.AddToRoleAsync(user, Settings.UserRole);
